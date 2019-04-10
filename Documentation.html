@@ -1,0 +1,24 @@
+﻿<div> 
+<p><b>Encrypting Text</b><br>
+When the encrypt button is pressed the letters and shorthand arrays are set to their default value, the letters and shorthand arrays are then shuffled based on the key by the shuffle function, the text in the input box is first base64 encoded then run through the encryption function, then the compression function, and then returned in the output box.</p>
+<p><b>Shuffle(String):void</b><br>
+The shuffle function gets the ascii code number of each character in the string argument it is given and appends them to a string. This string is then looped through 400 times appending even more numbers to a larger string. These numbers are based on the ascii codes of the string argument, and the number of times the loop has been iterated through. It is then made sure that the new, large, string of numbers has a length divisible by two, append a “9” onto the end if it doesn’t The large string is now run through a loop in such a way that the first and last characters in it are now the first and second, and the second first and second last are now the 3rd and fourth, continuing all the way through the string. This was needed due to the way the 400 time loop worked. The new, rearranged, large string is now made sure to have a length divisible by 4. If it does not, “89” is appended to the end. The large string of numbers is now looped through for its entire length at an interval of 4 and I’m really not sure how to explain what happens next at this point, look at the code. Basically, these numbers are used to rearrange the shorthand and letters arrays.</p>
+<p><b>Encrypt(String):String</b><br>
+The string argument is looped through, and the position of each character in the letters array is appended to a string. When this finishes, the function returns the string of character positions. This means that a very small set of characters is supported. This could be resolved by first base64 encoding the string argument. The code for this is from a year ago and went under a lot of revision then so it’s really ugly and I don’t want to look at it. This function returns a string twice as long as the string it is given.</p>
+<p><b>Compress(String):String</b><br>
+The code is short enough that I’m gonna just drop it here because its hard to explain and I did a poor job explaining similar code in the Shuffle section.<br>
+<code>function compress(nums){<br>
+var compressed="";<br>
+for(i=0;i&lt;nums.length/2;i++){<br>
+compressed += shorthand[Number(nums[i] + nums[nums.length-1-i])];<br>
+}<br>
+return compressed<br>
+}</code><br>
+Shorthand contains 100 unique characters.</p>
+<p><b>Decrypting Text</b><br>
+When the decrypt button is pressed the letters and shorthand arrays are set to their default value, the shuffle function is called with the key from the key box, the input text is run through the decompress function, run through decryption, and then outputted below, ideally decoded if the key is correct. That was one hell of a run on.</p>
+<p><b>Decompress(String):String</b><br>
+The index of each character of the inputed string in the shorthand array is found. The index is made to be 2 digits if less than 10 by preceding with a 0. The first digit of the two is appended to the part1 string, and the second digit is appended to the part two string. Part 2 string is reversed. Part 1 string is then appended to a final string, followed by the newly reversed part 2 string. This is then returned.</p>
+<p><b>Decrypt(String):String</b><br>
+The inputed string is looped through taking two of its characters at a time, converting them to ints, and appending the value of the letters array they index to a string, ultimately returning the decrypted string when finished.</p>
+			</div>
